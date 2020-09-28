@@ -3,7 +3,7 @@ package com.capgemini;
 import java.util.regex.*;
 import java.util.*;
 
-//PIN uc1 - validate pin code 400088
+//PIN uc1 - restrict the PIN from taking alphabet or special characters at the beginning
 public class PinValidator {
 
 	public static String pin;
@@ -12,14 +12,14 @@ public class PinValidator {
 	public void PinCheck(String pin) {
 		boolean flag = true;
 		while (flag) {
-			Pattern p = Pattern.compile("[0-9]{6}");
+			Pattern p = Pattern.compile("^([1-9])(\\S){5}$");
 			Matcher m = p.matcher(pin);
 			if (m.matches()) {
 				System.out.println("PIN is valid!!");
 				flag = false;
 				break;
 			} else {
-				System.out.println("PIn is invalid !! Try another pin code:");
+				System.out.println("PIN is invalid !! Try another pin code:");
 				pin = sc.nextLine();
 
 			}
