@@ -1,8 +1,37 @@
 package com.capgemini;
 
+import java.util.regex.*;
+import java.util.*;
+
+//PIN uc1 - validate pin code 400088
 public class PinValidator {
-//Master branch - welcome message
+
+	public static String pin;
+	public static Scanner sc;
+
+	public void PinCheck(String pin) {
+		boolean flag = true;
+		while (flag) {
+			Pattern p = Pattern.compile("[0-9]{6}");
+			Matcher m = p.matcher(pin);
+			if (m.matches()) {
+				System.out.println("PIN is valid!!");
+				flag = false;
+				break;
+			} else {
+				System.out.println("PIn is invalid !! Try another pin code:");
+				pin = sc.nextLine();
+
+			}
+		}
+	}
+
 	public static void main(String[] args) {
-		System.out.println("Welcome to PIN code validator program!!");
+		sc = new Scanner(System.in);
+		PinValidator user = new PinValidator();
+		System.out.println("Enter the user PIN:");
+		pin = sc.nextLine();
+		user.PinCheck(pin);
+
 	}
 }
